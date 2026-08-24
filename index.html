@@ -19,35 +19,40 @@
     <!-- Spline 3D Runtime Integration loaded in script.js as module -->
 </head>
 
-<!-- Retro/Futuristic Terminal Boot Loader Overlay -->
-<div id="terminal-loader" class="terminal-loader-overlay">
-    <div class="terminal-window">
-        <div class="terminal-header">
-            <div class="terminal-window-dots">
-                <span class="dot red"></span>
-                <span class="dot yellow"></span>
-                <span class="dot green"></span>
-            </div>
-            <div class="terminal-title">nihal@ece-maker-os:~ (v2.026)</div>
-            <button id="skip-loader-btn" class="terminal-skip-btn">SKIP [ESC]</button>
+<!-- Oscilloscope Loading Screen -->
+<div id="terminal-loader" class="osc-loader-overlay">
+    <div class="osc-wrapper">
+
+        <!-- Brand label -->
+        <div class="osc-brand">NIHAL M. <span class="osc-brand-slash">/</span> ECE MAKER</div>
+
+        <!-- Oscilloscope screen -->
+        <div class="osc-screen">
+            <!-- Grid lines -->
+            <div class="osc-grid"></div>
+            <!-- Waveform canvas -->
+            <canvas id="osc-canvas" class="osc-canvas"></canvas>
+            <!-- Screen glare overlay -->
+            <div class="osc-glare"></div>
         </div>
-        <div class="terminal-body">
-            <div class="crt-scanline"></div>
-            <div id="terminal-output" class="terminal-output"></div>
-            <div class="terminal-input-line">
-                <span class="prompt">nihal@system:~$</span>
-                <span class="terminal-cursor">█</span>
-            </div>
+
+        <!-- Status labels -->
+        <div class="osc-status-block">
+            <div id="osc-signal-label" class="osc-signal-label">SIGNAL DETECTED</div>
+            <div class="osc-init-label">PORTFOLIO INITIALIZING</div>
         </div>
-        <div class="terminal-footer">
-            <div class="terminal-progress-track">
-                <div id="terminal-progress-fill" class="terminal-progress-fill"></div>
-            </div>
-            <div class="terminal-status-row">
-                <span id="terminal-status-text">INITIALIZING EMBEDDED SYSTEM...</span>
-                <span id="terminal-progress-percent">0%</span>
-            </div>
+
+        <!-- Progress bar -->
+        <div class="osc-progress-track">
+            <div id="osc-progress-fill" class="osc-progress-fill"></div>
         </div>
+        <div class="osc-progress-row">
+            <span class="osc-progress-dots"><span class="osc-blink-dot"></span><span class="osc-blink-dot"></span><span class="osc-blink-dot"></span></span>
+            <span id="osc-percent" class="osc-percent">0%</span>
+        </div>
+
+        <!-- Skip -->
+        <button id="skip-loader-btn" class="osc-skip-btn">SKIP ↵</button>
     </div>
 </div>
 
