@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nihal M | ECE Student, Maker & Developer</title>
+    <!-- Fonts: Plus Jakarta Sans for headings, Inter for body, Anton for display, Share Tech Mono for LED tickers -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Anton&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Scripts for subtle background interactions -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
+    <!-- Spline 3D Runtime Integration loaded in script.js as module -->
+</head>
+
+<!-- Retro/Futuristic Terminal Boot Loader Overlay -->
+<div id="terminal-loader" class="terminal-loader-overlay">
+    <div class="terminal-window">
+        <div class="terminal-header">
+            <div class="terminal-window-dots">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+            </div>
+            <div class="terminal-title">nihal@ece-maker-os:~ (v2.026)</div>
+            <button id="skip-loader-btn" class="terminal-skip-btn">SKIP [ESC]</button>
+        </div>
+        <div class="terminal-body">
+            <div class="crt-scanline"></div>
+            <div id="terminal-output" class="terminal-output"></div>
+            <div class="terminal-input-line">
+                <span class="prompt">nihal@system:~$</span>
+                <span class="terminal-cursor">█</span>
+            </div>
+        </div>
+        <div class="terminal-footer">
+            <div class="terminal-progress-track">
+                <div id="terminal-progress-fill" class="terminal-progress-fill"></div>
+            </div>
+            <div class="terminal-status-row">
+                <span id="terminal-status-text">INITIALIZING EMBEDDED SYSTEM...</span>
+                <span id="terminal-progress-percent">0%</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Subtle Particle Background -->
+<div id="particles-js"></div>
+
+<!-- Ambient Decorative Background Glows -->
+<div class="ambient-glow glow-1"></div>
+<div class="ambient-glow glow-2"></div>
+
+<!-- Navigation -->
+<nav id="navbar">
+    <div class="nav-content">
+        <div class="logo">
+            <span class="logo-dot"></span>
+            <span class="logo-text">NIHAL<span class="logo-highlight">.</span></span>
+        </div>
+        <div class="nav-menu">
+            <ul class="nav-links">
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#skills">Skills</a></li>
+            </ul>
+            <div class="nav-actions">
+
+                <a href="#contact" class="btn btn-connect">Let's Connect <i
+                        class="fas fa-arrow-up-right-from-square"></i></a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section (Reference Alex Style: Minimal, Bold, Center 3D Object) -->
+<header id="hero" class="hero-section">
+    <!-- Massive background oversized text -->
+    <div class="hero-bg-text">HI, I'M NIHAL M.</div>
+
+    <div class="hero-layout-wrapper container">
+        <!-- Current Positions badges -->
+        <div class="hero-positions">
+            <span class="position-badge"><span class="badge-dot"></span> IEEE PES SB CEM CHAIR</span>
+            <span class="position-badge"><span class="badge-dot"></span> TINKERHUB CEM LEARNING COORDINATOR</span>
+            <span class="position-badge"><span class="badge-dot"></span> IEDC CEM COMMUNITY LEAD</span>
+        </div>
+
+        <!-- Centered WebGL Canvas container -->
+        <div class="hero-canvas-container">
+            <div class="spline-loader" id="spline-loader">
+                <div class="spline-spinner"></div>
+                <span class="spline-loader-text">Loading</span>
+            </div>
+            <canvas id="canvas3d"></canvas>
+        </div>
+
+        <!-- Overlaid asymmetrical content -->
+        <div class="hero-overlay-content">
+            <div class="hero-left-desc">
+                <p>ECE Student & Maker exploring the space where tech meets imagination.</p>
+                <div class="hero-buttons">
+
+                    <a href="https://drive.google.com/file/d/1adrR95YZ93BIpe2bbD4ceMTLUv8NLAfO/view?usp=sharing"
+                        class="btn btn-primary">Download CV <i class="fas fa-download"></i></a>
+                </div>
+            </div>
+
+            <div class="hero-right-cta">
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-num">20+</span>
+                        <span class="stat-label">Projects<br>Built</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-num">150+</span>
+                        <span class="stat-label">Students Mentored</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-num">10+</span>
+                        <span class="stat-label">Events Coordinated</span>
+                    </div>
+                </div>
+
+                <div class="hero-connect-wrapper">
+                    <h3 class="connect-heading">Let's Connect</h3>
+                    <div class="hero-social-links">
+                        <a href="https://www.linkedin.com/in/nihal-mavungal/" class="social-icon" target="_blank"
+                            aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://github.com/nihalm007" class="social-icon" target="_blank"
+                            aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://www.instagram.com/nihalmavungal/" class="social-icon" target="_blank"
+                            aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://wa.me/917034862055" class="social-icon" target="_blank"
+                            aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+</header>
+
+<!-- LED Ticker: Hero -> About -->
+<div class="led-ticker-container">
+    <div class="led-ticker-track">
+        <div class="led-ticker-content">
+            <span>ABOUT ME</span><span class="led-separator">✦</span>
+            <span>ABOUT ME</span><span class="led-separator">✦</span>
+            <span>ABOUT ME</span><span class="led-separator">✦</span>
+            <span>ABOUT ME</span><span class="led-separator">✦</span>
+            <span>ABOUT ME</span><span class="led-separator">✦</span>
+            <span>ABOUT ME</span><span class="led-separator">✦</span>
+            <span>ABOUT ME</span><span class="led-separator">✦</span>
+            <span>ABOUT ME</span><span class="led-separator">✦</span>
+        </div>
+        <div class="led-ticker-content" aria-hidden="true">
+            <span>ABOUT ME</span><span class="led-separator">✦</span>
+            <span>ABOUT ME</span><span class="led-separator">✦</span>
+            <span>ABOUT ME</span><span class="led-separator">✦</span>
+            <span>ABOUT ME</span><span class="led-separator">✦</span>
+            <span>ABOUT ME</span><span class="led-separator">✦</span>
+            <span>ABOUT ME</span><span class="led-separator">✦</span>
+            <span>ABOUT ME</span><span class="led-separator">✦</span>
+            <span>ABOUT ME</span><span class="led-separator">✦</span>
+        </div>
+    </div>
+</div>
+
+<!-- About Me Section -->
+<section id="about" class="about-section fade-in">
+    <div class="section-container">
+        <div class="about-layout-grid">
+            <!-- Left: Maker ID Card -->
+            <div class="about-visual">
+                <!-- Lanyard Assembly -->
+                <div class="maker-id-lanyard">
+                    <div class="lanyard-anchor"></div>
+                    <div class="lanyard-strap">
+                        <span class="strap-text">NIHAL M.</span>
+                    </div>
+                    <div class="lanyard-clip">
+                        <div class="clip-d-ring"></div>
+                        <div class="clip-clasp">
+                            <span class="clip-rivet"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vertical Maker ID Card -->
+                <div class="maker-id-card glass-card">
+                    <!-- Card Slot for Clip with Frosted Notch Patch -->
+                    <div class="card-slot-wrapper">
+                        <div class="card-slot-patch"></div>
+                        <div class="card-slot"></div>
+                    </div>
+
+                    <!-- Technical Ruler Markings (Sides) -->
+                    <div class="tech-ruler tech-ruler-left">
+                        <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                    </div>
+                    <div class="tech-ruler tech-ruler-right">
+                        <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+                    </div>
+
+                    <!-- Card Top Header -->
+                    <div class="card-header">
+                        <div class="card-tag">
+                            <span class="dot-indicator"></span> MAKER ID
+                        </div>
+                        <div class="card-id-num">
+                            NM-2026-01 <span class="dot-indicator"></span>
+                        </div>
+                    </div>
+
+                    <!-- Portrait / Photo Frame -->
+                    <div class="card-photo-wrapper">
+                        <img src="images/photo2.png" alt="Nihal M">
+                    </div>
+
+                    <!-- Identity Info -->
+                    <div class="card-identity">
+                        <h3 class="card-name">NIHAL M<span class="accent-dot">.</span></h3>
+                        <div class="card-subtitle">
+                            <span class="sub-tag">ECE STUDENT</span>
+                            <span class="sep">•</span>
+                            <span class="sub-tag">MAKER</span>
+                            <span class="sep">•</span>
+                            <span class="sub-tag">DEVELOPER</span>
+                        </div>
+                    </div>
+
+                    <!-- Subtle Divider -->
+                    <div class="card-divider"></div>
+
+                    <!-- Info Rows -->
+                    <div class="card-info-rows">
+                        <div class="info-row">
+                            <div class="info-label">
+                                <i class="fas fa-graduation-cap"></i>
+                                <span>EDUCATION</span>
+                            </div>
+                            <div class="info-value">BTech - 3rd Year</div>
+                        </div>
+
+                        <div class="info-row">
+                            <div class="info-label">
+                                <i class="fas fa-university"></i>
+                                <span>COLLEGE</span>
+                            </div>
+                            <div class="info-value">CE Munnar</div>
+                        </div>
+
+                        <div class="info-row">
+                            <div class="info-label">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>LOCATION</span>
+                            </div>
+                            <div class="info-value">Nilambur, Malappuram<br>Kerala</div>
+                        </div>
+
+                        <div class="info-row">
+                            <div class="info-label">
+                                <i class="fas fa-microchip"></i>
+                                <span>DEPARTMENT</span>
+                            </div>
+                            <div class="info-value">Electronics & Communication Engineering</div>
+                        </div>
+                    </div>
+
+                    <!-- Bottom Technical Footer -->
+                    <div class="card-footer">
+                        <div class="card-barcode" title="ID: NM-2026-01">
+                            <span class="bar b-thick"></span>
+                            <span class="bar b-thin"></span>
+                            <span class="bar b-med"></span>
+                            <span class="bar b-thin"></span>
+                            <span class="bar b-thick"></span>
+                            <span class="bar b-thin"></span>
+                            <span class="bar b-med"></span>
+                            <span class="bar b-thick"></span>
+                            <span class="bar b-thin"></span>
+                            <span class="bar b-med"></span>
+                            <span class="bar b-thick"></span>
+                            <span class="bar b-thin"></span>
+                            <span class="bar b-med"></span>
+                            <span class="bar b-thick"></span>
+                            <span class="bar b-thin"></span>
+                            <span class="bar b-med"></span>
+                            <span class="bar b-thick"></span>
+                            <span class="bar b-thin"></span>
+                        </div>
+
+                        <div class="card-nfc" title="NFC / Contactless">
+                            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor"
+                                stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M6 18a10 10 0 0 1 0-12" />
+                                <path d="M9.5 15.5a6 6 0 0 1 0-7" />
+                                <path d="M13 13a2 2 0 0 1 0-2" fill="currentColor" />
+                                <path d="M16.5 8.5a6 6 0 0 1 0 7" />
+                                <path d="M20 6a10 10 0 0 1 0 12" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: Content description -->
+            <div class="about-details">
+
+                <h2 class="section-heading">Turning ideas into <span class="gradient-text">real-world
+                        solutions.</span></h2>
+                <p class="about-text">
+                    I’m an ECE student and maker passionate about electronics, embedded systems, and building
+                    things from the ground up. I enjoy turning ideas into working prototypes and solving problems
+                    where hardware, software and creativity come together.
+                </p>
+
+                <div class="capability-grid">
+                    <div class="capability-item">
+                        <span class="bullet-dot"></span>
+                        <div>
+                            <h4>Hardware Design</h4>
+                            <p>Custom PCBs, prototyping, and circuits diagnostics.</p>
+                        </div>
+                    </div>
+                    <div class="capability-item">
+                        <span class="bullet-dot"></span>
+                        <div>
+                            <h4>Embedded Logic</h4>
+                            <p>Working with microcontrollers, sensors, firmware, and hardware-software integration.</p>
+                        </div>
+                    </div>
+                    <div class="capability-item">
+                        <span class="bullet-dot"></span>
+                        <div>
+                            <h4>Mentoring</h4>
+                            <p>Mentoring university cohorts on Arduino and other microcontrollers</p>
+                        </div>
+                    </div>
+                    <div class="capability-item">
+                        <span class="bullet-dot"></span>
+                        <div>
+                            <h4>Teamwork & Problem Solving</h4>
+                            <p>Collaborating with teams and breaking down complex problems and
+                                reliable solutions through experimentation.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="#projects" class="btn btn-outline btn-about-cta">Explore Projects <i
+                        class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Achievements Section -->
+<section id="achievements" class="achievements-section">
+    <div class="achievements-center-wrap">
+        <div class="achievements-dark-wrapper fade-in">
+            <div class="achievements-header-row">
+                <div class="achievements-left-header">
+                    <h2 class="section-heading dark-heading">Milestones & <span
+                            class="gradient-text">Recognitions.</span></h2>
+                </div>
+            </div>
+
+            <div class="achievements-carousel-container">
+                <div class="achievements-track">
+                    <!-- Card 1 (Far Left / Prev-2) -->
+                    <div class="achievement-card">
+                        <div class="achievement-img-wrapper">
+                            <img src="images/achievments/1739117939440.jpg" alt="Selected in Top10 projects"
+                                class="achievement-img">
+                        </div>
+                        <div class="achievement-overlay">
+                            <h3>Top 10 Projects — Kerala</h3>
+                            <p>Selected among the Top 10 projects across Kerala at TinkerHub’s Useless Projects
+                                Makeathon, from 600+ participating projects.</p>
+                            <span class="achievement-year">2025</span>
+                        </div>
+                    </div>
+
+                    <!-- Card 2 (Left / Prev) -->
+                    <div class="achievement-card">
+                        <div class="achievement-img-wrapper">
+                            <img src="images/achievments/coderecet.png" alt="Technical Coordinator"
+                                class="achievement-img">
+                        </div>
+                        <div class="achievement-overlay">
+                            <h3>Second RunnerUp — CodereCET</h3>
+                            <p>Won Second RunnerUp at CodereCET, a 36-hour national-level hackathon hosted by College of
+                                Engineering Trivandrum, competing among teams selected from 1000+ applications.</p>
+                            <span class="achievement-year">2025</span>
+                        </div>
+                    </div>
+
+                    <!-- Card 3 (Center Spotlight / Active) -->
+                    <div class="achievement-card">
+                        <div class="achievement-img-wrapper">
+                            <img src="images/achievments/makerofthemonth.jpg" alt="Maker of the Month"
+                                class="achievement-img">
+                        </div>
+                        <div class="achievement-overlay">
+                            <h3>Maker of the Month</h3>
+                            <p>Selected as TinkerHub’s Maker of the Month for September 2025, featuring my maker journey
+                                and projects in a podcast with TinkerHub COO Kurian Jacob.</p>
+                            <span class="achievement-year">2025</span>
+                        </div>
+                    </div>
+
+                    <!-- Card 4 (Right / Next) -->
+                    <div class="achievement-card">
+                        <div class="achievement-img-wrapper">
+                            <img src="images/achievments/inspireawards.jpg" alt="Innovation Showcase"
+                                class="achievement-img">
+                        </div>
+                        <div class="achievement-overlay">
+                            <h3>Inspire Award</h3>
+                            <p>Selected for the Inspire Award scholarship for developing Smart Mask, a project focused
+                                on encouraging proper mask usage through a smart reminder system.</p>
+                            <span class="achievement-year">2021</span>
+                        </div>
+                    </div>
+
+                    <!-- Card 5 (Far Right / Next-2) -->
+                    <div class="achievement-card">
+                        <div class="achievement-img-wrapper">
+                            <img src="images/achievments/tronix_interschool.jpg" alt="Tronix All Kerala Interschool"
+                                class="achievement-img">
+                        </div>
+                        <div class="achievement-overlay">
+                            <h3>Tronix All Kerala Interschool Robochampionship</h3>
+                            <p>Won the Tronix All Kerala Interschool Robochampionship — Season 1, jointly conducted by
+                                Kochi Metro, Startup India, and Sinrorobotics.</p>
+                            <span class="achievement-year">2023</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Carousel Dots Indicator -->
+            <div class="achievements-dots">
+                <span class="dot" data-index="0"></span>
+                <span class="dot" data-index="1"></span>
+                <span class="dot active" data-index="2"></span>
+                <span class="dot" data-index="3"></span>
+                <span class="dot" data-index="4"></span>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<!-- Projects Section -->
+<section id="projects" class="projects-section">
+    <!-- Cutting Mat Top Ruler -->
+    <div class="mat-ruler mat-ruler-top"></div>
+
+    <!-- Mat Grid Technical Guides (concentric circles, angle lines, origin ticks) -->
+    <div class="mat-technical-guides">
+        <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+            <!-- Outer Grid Coordinates (faint indicator text) -->
+            <text x="20" y="35" fill="rgba(34, 211, 238, 0.25)" font-family="Share Tech Mono, monospace"
+                font-size="11">MAT-MODEL: 24-B</text>
+            <text x="96%" y="35" fill="rgba(34, 211, 238, 0.25)" font-family="Share Tech Mono, monospace" font-size="11"
+                text-anchor="end">GRID: 20mm</text>
+
+            <!-- Concentric Angle Calibration Target - Bottom Left -->
+            <g transform="translate(100, 700)">
+                <circle cx="0" cy="0" r="80" fill="none" stroke="rgba(34, 211, 238, 0.15)" stroke-width="1"
+                    stroke-dasharray="3 3" />
+                <circle cx="0" cy="0" r="160" fill="none" stroke="rgba(34, 211, 238, 0.1)" stroke-width="1" />
+                <circle cx="0" cy="0" r="240" fill="none" stroke="rgba(34, 211, 238, 0.06)" stroke-width="1"
+                    stroke-dasharray="5 5" />
+                <line x1="0" y1="0" x2="300" y2="-173" stroke="rgba(34, 211, 238, 0.1)" stroke-width="1"
+                    stroke-dasharray="4 4" /> <!-- 30 deg -->
+                <line x1="0" y1="0" x2="212" y2="-212" stroke="rgba(34, 211, 238, 0.12)" stroke-width="1.2" />
+                <!-- 45 deg -->
+                <line x1="0" y1="0" x2="173" y2="-300" stroke="rgba(34, 211, 238, 0.1)" stroke-width="1"
+                    stroke-dasharray="4 4" /> <!-- 60 deg -->
+                <text x="140" y="-150" fill="rgba(34, 211, 238, 0.18)" font-family="Share Tech Mono, monospace"
+                    font-size="10" transform="rotate(-45)">45° ANGLE</text>
+            </g>
+
+            <!-- Concentric Calibration Target - Top Right -->
+            <g transform="translate(1100, 150)">
+                <circle cx="0" cy="0" r="100" fill="none" stroke="rgba(34, 211, 238, 0.12)" stroke-width="1.2" />
+                <circle cx="0" cy="0" r="200" fill="none" stroke="rgba(34, 211, 238, 0.07)" stroke-width="1"
+                    stroke-dasharray="6 6" />
+                <line x1="0" y1="0" x2="-250" y2="144" stroke="rgba(34, 211, 238, 0.08)" stroke-width="1"
+                    stroke-dasharray="4 4" /> <!-- 150 deg -->
+                <line x1="0" y1="0" x2="-176" y2="176" stroke="rgba(34, 211, 238, 0.1)" stroke-width="1" />
+                <!-- 135 deg -->
+            </g>
+
+            <!-- Blueprint Schematic Traces (PCB/Circuitry styling) -->
+            <path d="M 50,450 L 150,450 L 180,480 L 350,480 M 350,480 L 370,460 L 480,460" fill="none"
+                stroke="rgba(34, 211, 238, 0.08)" stroke-width="1.5" stroke-dasharray="5 2" />
+            <circle cx="50" cy="450" r="3.5" fill="rgba(34, 211, 238, 0.25)" />
+            <circle cx="480" cy="460" r="3.5" fill="rgba(34, 211, 238, 0.25)" />
+
+            <path d="M 850,550 L 980,550 L 1020,590 L 1150,590" fill="none" stroke="rgba(34, 211, 238, 0.08)"
+                stroke-width="1.5" />
+            <circle cx="850" cy="550" r="3.5" fill="rgba(34, 211, 238, 0.25)" />
+            <circle cx="1150" cy="590" r="3.5" fill="rgba(34, 211, 238, 0.25)" />
+        </svg>
+    </div>
+
+    <div class="section-container">
+        <div class="projects-header-grid">
+            <div>
+                <h2 class="section-heading">Ideas. Code. <span class="gradient-text">Impact.</span></h2>
+                <p class="section-desc">Some of my favorite builds which I made and collaborated. </p>
+            </div>
+
+        </div>
+
+        <!-- Carousel Grid -->
+        <div class="project-deck">
+            <!-- Project 1 -->
+            <div class="project-item">
+                <div class="project-img-container">
+                    <img src="images\projects\Smart Mask.png" alt="Heater Cutoff System">
+                </div>
+                <div class="project-info">
+                    <h3>Smart Mask</h3>
+                    <p>A wearable smart mask designed to encourage proper mask usage with intelligent detection and
+                        timely reminders.</p>
+                    <div class="project-meta">
+                        <span class="tag">Arduino</span>
+                        <span class="tag">BLE</span>
+                    </div>
+                    <div class="project-footer-row">
+                        <a href="#" class="project-code-link"><i class="fab fa-github"></i> source_code</a>
+                        <span class="project-year">2021</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="project-item">
+                <div class="project-img-container">
+                    <img src="images/projects/macropad.jpg" alt="Macropad">
+                </div>
+                <div class="project-info">
+                    <h3>Custom Macropad</h3>
+                    <p>A programmable custom keypad built for shortcuts, controls, and everyday productivity.</p>
+                    <div class="project-meta">
+                        <span class="tag">RP2040</span>
+                        <span class="tag">Custom Firmware</span>
+                    </div>
+                    <div class="project-footer-row">
+                        <a href="#" class="project-code-link"><i class="fab fa-github"></i> source_code</a>
+                        <span class="project-year">2025</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="project-item">
+                <div class="project-img-container">
+                    <img src="images/projects/otto.jpg" alt="Otto Mini Robot">
+                </div>
+                <div class="project-info">
+                    <h3>Otto Mini Companion Robot</h3>
+                    <p>A small interactive robot companion built with motion, sensing, and playful interactions to
+                        explore robotics and embedded systems.</p>
+                    <div class="project-meta">
+                        <span class="tag">Arduino</span>
+                        <span class="tag">C++</span>
+
+                    </div>
+                    <div class="project-footer-row">
+                        <a href="#" class="project-code-link"><i class="fab fa-github"></i> source_code</a>
+                        <span class="project-year">2022</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 4 -->
+            <div class="project-item">
+                <div class="project-img-container">
+                    <img src="images/projects/2dplotter.jpg" alt="2D XYZ Plotter">
+                </div>
+                <div class="project-info">
+                    <h3>2D Plotter</h3>
+                    <p>A DIY pen plotter that converts digital drawings into physical sketches using controlled motor
+                        movement.</p>
+                    <div class="project-meta">
+                        <span class="tag">Arduino</span>
+                        <span class="tag">Stepper Motor</span>
+                        <span class="tag">G-Code</span>
+                    </div>
+                    <div class="project-footer-row">
+                        <a href="#" class="project-code-link"><i class="fab fa-github"></i> source_code</a>
+                        <span class="project-year">2022</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 5: Smart Clock -->
+            <div class="project-item">
+                <div class="project-img-container">
+                    <img src="images/projects/SMART CLOCK.jpg" alt="Smart Clock">
+                </div>
+                <div class="project-info">
+                    <h3>Smart Bell</h3>
+                    <p>An 8051-based automated bell system designed to manage scheduled periods and simplify daily
+                        college routines.</p>
+                    <div class="project-meta">
+                        <span class="tag">8051</span>
+                        <span class="tag">C</span>
+
+                    </div>
+                    <div class="project-footer-row">
+                        <a href="#" class="project-code-link"><i class="fab fa-github"></i> source_code</a>
+                        <span class="project-year">2026</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 6: Password Lock System -->
+            <div class="project-item">
+                <div class="project-img-container">
+                    <img src="images\projects\homeAutomation.jpg" alt="Password Lock System">
+                </div>
+                <div class="project-info">
+                    <h3>Smart Home Automation</h3>
+                    <p>A connected home system for controlling appliances and monitoring everyday devices through a
+                        simple interface.</p>
+                    <div class="project-meta">
+                        <span class="tag">Esp3266</span>
+                    </div>
+                    <div class="project-footer-row">
+                        <a href="#" class="project-code-link"><i class="fab fa-github"></i> source_code</a>
+                        <span class="project-year">2022</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 7: IoT Weather Station Node -->
+            <div class="project-item">
+                <div class="project-img-container">
+                    <img src="images\projects\heater cutoo.jpg" alt="IoT Weather Station Node">
+                </div>
+                <div class="project-info">
+                    <h3>Smart Heater Cutoff</h3>
+                    <p>An automatic safety system that monitors a heater and cuts off power when unsafe temperature
+                        conditions are detected.</p>
+                    <div class="project-meta">
+                        <span class="tag">ESP32</span>
+                    </div>
+                    <div class="project-footer-row">
+                        <a href="#" class="project-code-link"><i class="fab fa-github"></i> source_code</a>
+                        <span class="project-year">2025</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 8: Self-Balancing Robot -->
+            <div class="project-item">
+                <div class="project-img-container">
+                    <img src="images\projects\Chai Maker.png" alt="Self Balancing Robot">
+                </div>
+                <div class="project-info">
+                    <h3>Chai Maker</h3>
+                    <p>A fun automation project that combines heating, timing, and control to simplify the process of
+                        making chai , fully build from scrap.</p>
+                    <div class="project-meta">
+                        <span class="tag">Arduino Uno</span>
+                    </div>
+                    <div class="project-footer-row">
+                        <a href="#" class="project-code-link"><i class="fab fa-github"></i> source_code</a>
+                        <span class="project-year">2021</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 9: Digital Oscilloscope Shield -->
+            <div class="project-item">
+                <div class="project-img-container">
+                    <img src="images\projects\water purity.jpg" alt="Digital Oscilloscope Shield">
+                </div>
+                <div class="project-info">
+                    <h3>Water Purity Tester</h3>
+                    <p>A device that measures key water-quality parameters to provide a quick indication of water
+                        condition.</p>
+                    <div class="project-meta">
+                        <span class="tag">Arduino Due</span>
+                        <span class="tag">PH MEter</span>
+
+                    </div>
+                    <div class="project-footer-row">
+                        <a href="#" class="project-code-link"><i class="fab fa-github"></i> source_code</a>
+                        <span class="project-year">2023</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 10: View More Card Placeholder -->
+            <div class="project-item view-more-card">
+                <div class="view-more-content">
+                    <div class="view-more-icon">
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <h3>Explore More</h3>
+                    <p>Explore more projects I built which i posted in LinkedIn</p>
+                    <a href="https://www.linkedin.com/in/nihal-mavungal/" target="_blank"
+                        class="btn btn-outline btn-view-more">
+                        LinkedIn <i class="fab fa-linkedin"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Cutting Mat Bottom Ruler -->
+    <div class="mat-ruler mat-ruler-bottom"></div>
+</section>
+
+
+<!-- Skills & Tools Section -->
+<section id="skills" class="skills-section fade-in">
+    <div class="section-container">
+        <div class="skills-header">
+
+            <h2 class="section-heading">Skills & <span class="gradient-text">Expertise.</span></h2>
+            <p class="section-desc">A collection of technologies, tools and skills I use to build innovative and
+                impactful solutions.</p>
+        </div>
+
+        <!-- Custom ECE Hardware Toolbox Case -->
+        <div class="toolbox-case">
+            <!-- Case Handle wrapper -->
+            <div class="toolbox-handle-wrapper">
+                <div class="toolbox-handle"></div>
+            </div>
+            <!-- Case Latches -->
+            <div class="toolbox-latch toolbox-latch-left"></div>
+            <div class="toolbox-latch toolbox-latch-right"></div>
+
+            <!-- Case Inner Body -->
+            <div class="toolbox-body">
+                <div class="toolbox-compartments">
+
+                    <!-- Compartment 1: Languages -->
+                    <div class="compartment tray-languages">
+                        <div class="compartment-header">
+                            <div class="compartment-icon"><i class="fas fa-code"></i></div>
+                            <div>
+                                <h3>Languages</h3>
+                                <p>Programming languages I use to build.</p>
+                            </div>
+                        </div>
+                        <div class="skills-mini-grid">
+                            <div class="skill-mini-card">
+                                <div class="skill-mini-icon">
+                                    <img src="images/icons/c++.jpg" alt="C/C++" width="40" height="40"
+                                        style="object-fit:contain;border-radius:6px;">
+                                </div>
+                                <span>C/C++</span>
+                            </div>
+
+                            <div class="skill-mini-card">
+                                <div class="skill-mini-icon">
+                                    <img src="images/icons/Untitled design (7).png" alt="Python" width="40" height="40"
+                                        style="object-fit:contain;border-radius:6px;">
+                                </div>
+                                <span>Python</span>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+
+                    <!-- Compartment 3: Tools & Software -->
+                    <div class="compartment tray-tools">
+                        <div class="compartment-header">
+                            <div class="compartment-icon"><i class="fas fa-tools"></i></div>
+                            <div>
+                                <h3>Tools & Software</h3>
+                                <p>CAD modeling, circuitry & IDE environments.</p>
+                            </div>
+                        </div>
+
+                        <div class="skills-mini-grid skills-mini-grid--row">
+                            <div class="skill-mini-card">
+                                <div class="skill-mini-icon">
+                                    <img src="images/icons/fusion360.png" alt="Fusion 360" width="40" height="40"
+                                        style="object-fit:contain;">
+                                </div>
+                                <span>Fusion360</span>
+                            </div>
+                            <div class="skill-mini-card">
+                                <div class="skill-mini-icon">
+                                    <img src="images/icons/proteus.png" alt="Proteus" width="40" height="40"
+                                        style="object-fit:contain;">
+                                </div>
+                                <span>Proteus</span>
+                            </div>
+                            <div class="skill-mini-card">
+                                <div class="skill-mini-icon">
+                                    <img src="images/icons/easyeda.png" alt="EasyEDA" width="40" height="40"
+                                        style="object-fit:contain;">
+                                </div>
+                                <span>EasyEDA</span>
+                            </div>
+                            <!-- Arduino IDE -->
+                            <div class="skill-mini-card">
+                                <div class="skill-mini-icon">
+                                    <img src="images/icons/Arduinoide.png" alt="Arduino IDE" width="40" height="40"
+                                        style="object-fit:contain;">
+                                </div>
+                                <span>ArduinoIDE</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Compartment 3b: Soft Skills — spans both rows in right column -->
+                    <div class="compartment tray-soft">
+                        <div class="compartment-header">
+                            <div class="compartment-icon"><i class="fas fa-user-friends"></i></div>
+                            <div>
+                                <h3>Soft Skills</h3>
+                                <p>Core interpersonal and management qualities.</p>
+                            </div>
+                        </div>
+                        <div class="soft-skills-list">
+                            <div class="soft-skill-item">
+                                <div class="soft-skill-icon"><i class="fas fa-lightbulb"></i></div>
+                                <div class="soft-skill-desc">
+                                    <h4>Problem Solving</h4>
+                                    <p>Analytical thinking to solve challenges.</p>
+                                </div>
+                            </div>
+                            <div class="soft-skill-item">
+                                <div class="soft-skill-icon"><i class="fas fa-users"></i></div>
+                                <div class="soft-skill-desc">
+                                    <h4>Teamwork</h4>
+                                    <p>Collaborating with teams to achieve goals.</p>
+                                </div>
+                            </div>
+                            <div class="soft-skill-item">
+                                <div class="soft-skill-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+                                <div class="soft-skill-desc">
+                                    <h4>Mentoring</h4>
+                                    <p>Guiding and helping others learn and grow.</p>
+                                </div>
+                            </div>
+                            <div class="soft-skill-item">
+                                <div class="soft-skill-icon"><i class="fas fa-sync-alt"></i></div>
+                                <div class="soft-skill-desc">
+                                    <h4>Adaptability</h4>
+                                    <p>Quick to learn and adapt to new tech.</p>
+                                </div>
+                            </div>
+
+                            <div class="soft-skill-item">
+                                <div class="soft-skill-icon"><i class="fas fa-clock"></i></div>
+                                <div class="soft-skill-desc">
+                                    <h4>Time Management</h4>
+                                    <p>Prioritising tasks & delivering on time.</p>
+                                </div>
+                            </div>
+                            <div class="soft-skill-item">
+                                <div class="soft-skill-icon"><i class="fas fa-crown"></i></div>
+                                <div class="soft-skill-desc">
+                                    <h4>Leadership</h4>
+                                    <p>Driving student cohorts & mentoring.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Compartment 4: Hardware Platforms — spans 2 columns on second row -->
+                    <div class="compartment tray-hardware">
+                        <div class="compartment-header">
+                            <div class="compartment-icon"><i class="fas fa-microchip"></i></div>
+                            <div>
+                                <h3>Hardware Platforms</h3>
+                                <p>Physical chip architectures and embedded computing environments.</p>
+                            </div>
+                        </div>
+                        <div class="hardware-cards-grid">
+                            <!-- Arduino card -->
+                            <div class="hardware-card">
+                                <div class="hw-img-container">
+                                    <img src="images/arduino_3d.jpg" alt="Arduino Uno Board">
+                                </div>
+                                <div class="hw-info">
+                                    <h4>Arduino</h4>
+                                    <p>Prototyping & IoT Development</p>
+                                </div>
+                            </div>
+                            <!-- ESP32 card -->
+                            <div class="hardware-card">
+                                <div class="hw-img-container">
+                                    <img src="images/esp32_3d.jpg" alt="ESP32 Development Board">
+                                </div>
+                                <div class="hw-info">
+                                    <h4>ESP32</h4>
+                                    <p>IoT, Embedded & Connectivity</p>
+                                </div>
+                            </div>
+                            <!-- Raspberry Pi card -->
+                            <div class="hardware-card">
+                                <div class="hw-img-container">
+                                    <img src="images/raspberry_pi_3d.jpg" alt="Raspberry Pi 4 Board">
+                                </div>
+                                <div class="hw-info">
+                                    <h4>Raspberry Pi</h4>
+                                    <p>Single-board Computing & Edge AI</p>
+                                </div>
+                            </div>
+                            <!-- & More card -->
+                            <div class="hardware-card hw-more-card">
+                                <div class="hw-more-content">
+                                    <div class="hw-more-plus">+</div>
+                                    <h4>& More</h4>
+                                    <p>8051, STM32, ATtiny & others</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3D Bottom Drawer Base matching reference image -->
+                <div class="toolbox-bottom-drawer">
+                    <div class="toolbox-drawer-panel">
+                        <div class="toolbox-bottom-handle"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>
+
+<!-- LED Ticker: Skills -> Contact -->
+<div class="led-ticker-container">
+    <div class="led-ticker-track led-reverse">
+        <div class="led-ticker-content">
+            <span>LETS CONNECT</span><span class="led-separator">✦</span>
+            <span>LETS CONNECT</span><span class="led-separator">✦</span>
+            <span>LETS CONNECT</span><span class="led-separator">✦</span>
+            <span>LETS CONNECT</span><span class="led-separator">✦</span>
+            <span>LETS CONNECT</span><span class="led-separator">✦</span>
+            <span>LETS CONNECT</span><span class="led-separator">✦</span>
+            <span>LETS CONNECT</span><span class="led-separator">✦</span>
+            <span>LETS CONNECT</span><span class="led-separator">✦</span>
+        </div>
+        <div class="led-ticker-content" aria-hidden="true">
+            <span>LETS CONNECT</span><span class="led-separator">✦</span>
+            <span>LETS CONNECT</span><span class="led-separator">✦</span>
+            <span>LETS CONNECT</span><span class="led-separator">✦</span>
+            <span>LETS CONNECT</span><span class="led-separator">✦</span>
+            <span>LETS CONNECT</span><span class="led-separator">✦</span>
+            <span>LETS CONNECT</span><span class="led-separator">✦</span>
+            <span>LETS CONNECT</span><span class="led-separator">✦</span>
+            <span>LETS CONNECT</span><span class="led-separator">✦</span>
+        </div>
+    </div>
+</div>
+
+<!-- Establish Connection (Contact Banner) -->
+<section id="contact" class="contact-section fade-in">
+    <div class="section-container">
+        <div class="contact-banner gradient-card">
+            <div class="contact-text-content">
+                <h2>Have an idea or a project in mind?</h2>
+                <p>I'm always open to discuss opportunities, collaborations, or mentorship programs.</p>
+                <div class="contact-cta-group">
+                    <a href="mailto:your.email@example.com" class="btn btn-primary btn-white-text">Get In Touch <i
+                            class="far fa-paper-plane"></i></a>
+                    <div class="contact-social-row">
+                        <a href="https://www.linkedin.com/in/nihal-mavungal/" class="social-icon contact-social-icon"
+                            target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://github.com/nihalm007" class="social-icon contact-social-icon" target="_blank"
+                            aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://www.instagram.com/nihalmavungal/" class="social-icon contact-social-icon"
+                            target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://wa.me/917034862055" class="social-icon contact-social-icon" target="_blank"
+                            aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-visual-placeholder">
+                <div class="paper-plane-draw">
+                    <svg viewBox="0 0 100 100" class="draw-svg">
+                        <path d="M 10,80 Q 50,20 90,40" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="2"
+                            stroke-dasharray="4,4" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <div class="container footer-content">
+        <div class="footer-brand">
+
+            <p>Simplifying Tech, Amplifying Life.</p>
+        </div>
+
+        <div class="footer-links">
+            <div class="footer-social-links">
+                <a href="https://github.com/nihalm007" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/nihal-mavungal/" target="_blank"><i
+                        class="fab fa-linkedin-in"></i></a>
+                <a href="https://www.instagram.com/nihalmavungal/" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="mailto:your.nihalmavungal0@example.com"><i class="far fa-envelope"></i></a>
+            </div>
+            <p class="copyright">&copy; 2026 Nihal M. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+<script src="script.js"></script>
+<script type="module">
+    import { Application } from 'https://unpkg.com/@splinetool/runtime@latest/build/runtime.js';
+
+    function initSpline() {
+        const canvas = document.getElementById('canvas3d');
+        const loader = document.getElementById('spline-loader');
+        if (!canvas) return;
+
+        // Intercept scroll wheel events to prevent Spline from hijacking page scroll
+        canvas.addEventListener('wheel', (e) => {
+            e.stopImmediatePropagation();
+        }, { capture: true, passive: true });
+
+        // Intercept touch events on mobile so the page can be scrolled normally
+        canvas.addEventListener('touchstart', (e) => {
+            e.stopImmediatePropagation();
+        }, { capture: true, passive: true });
+
+        canvas.addEventListener('touchmove', (e) => {
+            e.stopImmediatePropagation();
+        }, { capture: true, passive: true });
+
+        console.log('Initializing Spline Application...');
+        const splineApp = new Application(canvas);
+
+        splineApp.load('https://prod.spline.design/vt2D4TFqHfnaT5ec/scene.splinecode')
+            .then(() => {
+                console.log('Spline scene loaded successfully!');
+                try {
+                    if (typeof splineApp.setZoom === 'function') {
+                        splineApp.setZoom(0.68); // Zoom out camera to scale down the robot head
+                    }
+                } catch (e) {
+                    console.warn('Spline setZoom is not supported in this runtime build:', e);
+                }
+                if (loader) {
+                    loader.classList.add('fade-out');
+                }
+                canvas.classList.add('loaded');
+            })
+            .catch((err) => {
+                console.error('Error loading Spline scene:', err);
+                const loaderText = document.querySelector('.spline-loader-text');
+                if (loaderText) {
+                    loaderText.textContent = 'Failed to load 3D Scene';
+                    loaderText.style.color = '#ff6b6b';
+                }
+            });
+    }
+
+    // Initialize immediately if DOM is already fully loaded
+    if (document.readyState === 'complete' || document.readyState === 'interactive') {
+        initSpline();
+    } else {
+        window.addEventListener('DOMContentLoaded', initSpline);
+    }
+</script>
+</body>
+
+</html>
