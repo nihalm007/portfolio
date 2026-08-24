@@ -368,97 +368,146 @@ if (document.readyState !== 'loading') {
   document.addEventListener('DOMContentLoaded', initMakerCardTilt);
 }
 
-// --- Retro Terminal Boot Loader ---
-function initTerminalBootLoader() {
-  const loader = document.getElementById('terminal-loader');
-  const output = document.getElementById('terminal-output');
-  const progressBar = document.getElementById('terminal-progress-fill');
-  const progressPercent = document.getElementById('terminal-progress-percent');
-  const statusText = document.getElementById('terminal-status-text');
-  const skipBtn = document.getElementById('skip-loader-btn');
+// --- Oscilloscope Loading Screen ---
+function initOscilloscopeLoader() {
+  const loader   = document.getElementById('terminal-loader');
+  const canvas   = document.getElementById('osc-canvas');
+  const fill     = document.getElementById('osc-progress-fill');
+  const pct      = document.getElementById('osc-percent');
+  const skipBtn  = document.getElementById('skip-loader-btn');
 
-  if (!loader || !output) return;
+  if (!loader || !canvas) return;
 
-  // Check if loader was already shown during this browser session
+  // Skip if already seen this session
   if (sessionStorage.getItem('maker_terminal_shown') === 'true') {
     loader.style.display = 'none';
     return;
   }
 
-  const bootMessages = [
-    { time: "0.012", msg: "BIOS v2.026 - COLLEGE OF ENGINEERING MUNNAR", status: "OK" },
-    { time: "0.058", msg: "CPU: ESP32-S3 Dual-Core @ 240MHz | SRAM: 512KB", status: "OK" },
-    { time: "0.130", msg: "INITIALIZING HARDWARE INTERFACES (I2C, SPI, UART)...", status: "OK" },
-    { time: "0.245", msg: "MOUNTING EMBEDDED SYSTEM FIRMWARE (C/C++, KMK)...", status: "OK" },
-    { time: "0.410", msg: "CALIBRATING ROBOTICS KINEMATICS & SENSOR NODES...", status: "OK" },
-    { time: "0.610", msg: "INITIALIZING SPLINE 3D ENGINE & ASSET PIPELINE...", status: "OK" },
-    { time: "0.820", msg: "AUTHENTICATING MAKER DIGITAL ID (NM-2026-01)...", status: "OK" },
-    { time: "0.970", msg: "SYSTEM STABLE. LAUNCHING NIHAL M. PORTFOLIO...", status: "READY" }
-  ];
+  const ctx = canvas.getContext('2d');
+  let dismissed = false;
 
-  let lineIndex = 0;
-  let isCompleted = false;
-
-  function dismissLoader() {
-    if (isCompleted) return;
-    isCompleted = true;
+  function dismiss() {
+    if (dismissed) return;
+    dismissed = true;
     sessionStorage.setItem('maker_terminal_shown', 'true');
     loader.classList.add('terminal-fade-out');
-    setTimeout(() => {
-      loader.style.display = 'none';
-    }, 600);
+    setTimeout(() => { loader.style.display = 'none'; }, 700);
   }
 
-  // Keyboard shortcut listener (ESC key)
-  window.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') dismissLoader();
-  });
+  window.addEventListener('keydown', e => { if (e.key === 'Escape') dismiss(); });
+  if (skipBtn) skipBtn.addEventListener('click', dismiss);
 
-  if (skipBtn) {
-    skipBtn.addEventListener('click', dismissLoader);
+  // Resize canvas to its CSS pixel size
+  function resizeCanvas() {
+    canvas.width  = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+  }
+  resizeCanvas();
+  window.addEventListener('resize', resizeCanvas, { passive: true });
+
+  // --- Waveform drawing ---
+  const TOTAL_MS   = 2800;   // total animation duration
+  const startTime  = performance.now();
+
+  // Pure sine wave
+  function getWaveY(t) {
+    return Math.sin(t * Math.PI * 6) * 0.38;
   }
 
-  function printNextLine() {
-    if (isCompleted) return;
+  function drawFrame(now) {
+    if (dismissed) return;
+    const elapsed  = now - startTime;
+    const progress = Math.min(elapsed / TOTAL_MS, 1);
 
-    if (lineIndex < bootMessages.length) {
-      const item = bootMessages[lineIndex];
-      const lineEl = document.createElement('div');
-      lineEl.className = 'terminal-line';
-      lineEl.innerHTML = `
-        <span class="line-time">[ ${item.time}s ]</span>
-        <span class="line-msg">${item.msg}</span>
-        <span class="line-status">[ ${item.status} ]</span>
-      `;
-      output.appendChild(lineEl);
-      output.scrollTop = output.scrollHeight;
+    // Update progress UI
+    const pctInt = Math.round(progress * 100);
+    if (fill) fill.style.width = pctInt + '%';
+    if (pct)  pct.textContent   = pctInt + '%';
 
-      lineIndex++;
-      const percent = Math.min(100, Math.round((lineIndex / bootMessages.length) * 100));
-      if (progressBar) progressBar.style.width = percent + '%';
-      if (progressPercent) progressPercent.textContent = percent + '%';
-      if (statusText && item.msg) statusText.textContent = item.msg;
+    const W = canvas.width;
+    const H = canvas.height;
+    const cx = canvas.getContext('2d');
 
-      // Line timing delay (~450ms per line for readable pace)
-      setTimeout(printNextLine, 450);
+    // Clear
+    cx.clearRect(0, 0, W, H);
+
+    // Midline
+    const midY = H * 0.5;
+    const amp  = H * 0.32;
+
+    // How far along the waveform has drawn (sweeps left→right as progress grows)
+    const drawUpTo = progress;  // 0..1
+
+    // Phosphor trailing glow — draw wider stroke first, blurred
+    const points = 320;
+    cx.save();
+    cx.filter = 'blur(3px)';
+    cx.beginPath();
+    for (let i = 0; i <= points; i++) {
+      const tx = i / points;
+      if (tx > drawUpTo) break;
+      const px = tx * W;
+      const py = midY - getWaveY(tx) * amp;
+      if (i === 0) cx.moveTo(px, py);
+      else cx.lineTo(px, py);
+    }
+    cx.strokeStyle = 'rgba(99, 102, 241, 0.35)';
+    cx.lineWidth = 5;
+    cx.stroke();
+    cx.restore();
+
+    // Sharp bright waveform on top
+    cx.beginPath();
+    for (let i = 0; i <= points; i++) {
+      const tx = i / points;
+      if (tx > drawUpTo) break;
+      const px = tx * W;
+      const py = midY - getWaveY(tx) * amp;
+      if (i === 0) cx.moveTo(px, py);
+      else cx.lineTo(px, py);
+    }
+    // Gradient: indigo → cyan as signal draws
+    const grad = cx.createLinearGradient(0, 0, W * drawUpTo, 0);
+    grad.addColorStop(0,    '#4f46e5');
+    grad.addColorStop(0.6,  '#6366f1');
+    grad.addColorStop(1,    '#06b6d4');
+    cx.strokeStyle = grad;
+    cx.lineWidth   = 1.8;
+    cx.lineJoin    = 'round';
+    cx.lineCap     = 'round';
+    cx.shadowColor = '#6366f1';
+    cx.shadowBlur  = 8;
+    cx.stroke();
+
+    // Scanning dot at leading edge
+    if (progress < 1) {
+      const dotX = drawUpTo * W;
+      const dotY = midY - getWaveY(drawUpTo) * amp;
+      cx.beginPath();
+      cx.arc(dotX, dotY, 3, 0, Math.PI * 2);
+      cx.fillStyle = '#06b6d4';
+      cx.shadowColor = '#06b6d4';
+      cx.shadowBlur  = 14;
+      cx.fill();
+    }
+
+    if (progress < 1) {
+      requestAnimationFrame(drawFrame);
     } else {
-      // Finished all boot sequence lines
-      if (progressBar) progressBar.style.width = '100%';
-      if (progressPercent) progressPercent.textContent = '100%';
-      if (statusText) statusText.textContent = 'BOOT COMPLETE. WELCOME!';
-      setTimeout(dismissLoader, 400);
+      // Small pause then dismiss
+      setTimeout(dismiss, 320);
     }
   }
 
-  // Start sequence
-  setTimeout(printNextLine, 150);
+  requestAnimationFrame(drawFrame);
 }
 
-// Start terminal boot loader on load
+// Start oscilloscope loader on load
 if (document.readyState !== 'loading') {
-  initTerminalBootLoader();
+  initOscilloscopeLoader();
 } else {
-  document.addEventListener('DOMContentLoaded', initTerminalBootLoader);
+  document.addEventListener('DOMContentLoaded', initOscilloscopeLoader);
 }
 
 // --- Smart Scroll-Hide & Auto-Show on Stop Navigation Bar ---
