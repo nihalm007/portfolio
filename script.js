@@ -103,18 +103,17 @@ if (document.readyState !== 'loading') {
   });
 }
 
-// --- Intersection Observer for Scroll Fade-in ---
+// --- Intersection Observer for Scroll Fade-in (One-shot In Animation) ---
 const observerOptions = {
   threshold: 0.1,
   rootMargin: "0px 0px -50px 0px"
 };
 
-const observer = new IntersectionObserver((entries) => {
+const observer = new IntersectionObserver((entries, obs) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       entry.target.classList.add('visible');
-    } else {
-      entry.target.classList.remove('visible');
+      obs.unobserve(entry.target); // Keep visible permanently once animated in (no blinking/out animation)
     }
   });
 }, observerOptions);
