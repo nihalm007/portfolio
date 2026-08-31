@@ -561,16 +561,60 @@ if (document.readyState !== 'loading') {
   document.addEventListener('DOMContentLoaded', initSmartNavScroll);
 }
 
-// --- Auto-remove Live Server Disconnect Banner ---
-function killDevServerBanner() {
-  const elements = document.querySelectorAll('div, p, span, iframe');
-  elements.forEach(el => {
-    if (el.textContent && el.textContent.includes('lost connection to dev server')) {
-      el.remove();
+// --- Mobile Navigation Drawer Toggle & Controller ---
+function initMobileNavigation() {
+  const toggleBtn = document.getElementById('mobile-menu-toggle');
+  const closeBtn = document.getElementById('mobile-drawer-close');
+  const drawer = document.getElementById('mobile-nav-drawer');
+  const backdrop = document.getElementById('mobile-drawer-backdrop');
+  const mobileLinks = document.querySelectorAll('.mobile-link');
+
+  if (!toggleBtn || !drawer || !backdrop) return;
+
+  function openDrawer() {
+    drawer.classList.add('open');
+    backdrop.classList.add('open');
+    toggleBtn.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeDrawer() {
+    drawer.classList.remove('open');
+    backdrop.classList.remove('open');
+    toggleBtn.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  toggleBtn.addEventListener('click', () => {
+    if (drawer.classList.contains('open')) {
+      closeDrawer();
+    } else {
+      openDrawer();
+    }
+  });
+
+  if (closeBtn) closeBtn.addEventListener('click', closeDrawer);
+  backdrop.addEventListener('click', closeDrawer);
+
+  mobileLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      closeDrawer();
+    });
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && drawer.classList.contains('open')) {
+      closeDrawer();
     }
   });
 }
-setInterval(killDevServerBanner, 300);
+
+if (document.readyState !== 'loading') {
+  initMobileNavigation();
+} else {
+  document.addEventListener('DOMContentLoaded', initMobileNavigation);
+}
+
 
 
 
